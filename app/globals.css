@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --tile-size: 80px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,10 +19,81 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  font-size: 30px;
+}
+
+
+.puzzle-wrapper {
+  width: calc(var(--col, 4) * var(--tile-size));
+  height: calc(var(--row, 4) * var(--tile-size));
+}
+
+.tile {
+  flex: 0 0 var(--tile-size);
+  width: var(--tile-size);
+  height: var(--tile-size);
+}
+
+.tilezero {
+  background-color: transparent;
+  color: transparent;
+}
+
+.up {
+  animation: animateUp .1s ease-out;
+}
+
+.down {
+  animation: animateDown .1s ease-out;
+}
+
+.left {
+  animation: animateLeft .1s ease-out;
+}
+
+.right {
+  animation: animateRight .1s ease-out;
+}
+
+@keyframes animateUp {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes animateDown {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes animateLeft {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes animateRight {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
